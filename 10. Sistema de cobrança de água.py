@@ -77,3 +77,4 @@ print("Taxa de serviço: R$", taxaServico)
 print("Multa: R$", multa)
 print("Valor total da conta: R$", valorTotal)
 print("Classificação do consumo: ", classificacao)      
+#teste
