@@ -1,0 +1,446 @@
+Python contains **71 built-in functions** (as of Python 3.10+). Below is the complete, categorized reference guide covering what each function does, how to use it, and when to apply it.
+
+---
+ 1. Math & Numeric Operations
+
+### `abs(x)`
+
+* **How it works:** Returns the absolute value of a number (distance from zero).
+* **How to use:** `abs(-5)` $\rightarrow$ `5`
+* **When to use:** When calculating distances, magnitude, or converting negative values to positive.
+
+### `divmod(a, b)`
+
+* **How it works:** Takes two numbers and returns a tuple `(a // b, a % b)` containing the quotient and remainder.
+* **How to use:** `quotient, remainder = divmod(10, 3)` $\rightarrow$ `(3, 1)`
+* **When to use:** Converting total seconds into minutes/seconds, pagination math, or working with time/date intervals.
+
+### `max(arg1, arg2, *args, key=None)`
+
+* **How it works:** Returns the largest item in an iterable or among two or more arguments.
+* **How to use:** `max([1, 5, 2])` $\rightarrow$ `5` or `max(words, key=len)`
+* **When to use:** Finding upper limits, highest scores, or extreme values based on custom key criteria.
+
+### `min(arg1, arg2, *args, key=None)`
+
+* **How it works:** Returns the smallest item in an iterable or among two or more arguments.
+* **How to use:** `min([1, 5, 2])` $\rightarrow$ `1` or `min(words, key=len)`
+* **When to use:** Finding lower limits, minimum prices, or baseline metrics.
+
+### `pow(base, exp, mod=None)`
+
+* **How it works:** Raises `base` to `exp`; if `mod` is provided, calculates `(base ** exp) % mod` efficiently.
+* **How to use:** `pow(2, 3)` $\rightarrow$ `8` or `pow(2, 3, 5)` $\rightarrow$ `3`
+* **When to use:** Modular arithmetic, cryptography, or performance-critical power calculations.
+
+### `round(number, ndigits=None)`
+
+* **How it works:** Rounds a floating-point number to `ndigits` precision using "round half to even" (banker's rounding).
+* **How to use:** `round(3.14159, 2)` $\rightarrow$ `3.14`
+* **When to use:** Displaying financial figures, formatting output numbers, or truncating floating-point noise.
+
+### `sum(iterable, start=0)`
+
+* **How it works:** Sums `start` and the items of an `iterable` from left to right.
+* **How to use:** `sum([1, 2, 3])` $\rightarrow$ `6` or `sum([1, 2], 10)` $\rightarrow$ `12`
+* **When to use:** Accumulating numeric sequences or totals. (Use `''.join(seq)` for strings).
+
+---
+
+## 2. Type Conversions & Constructors
+
+### `bool(x)`
+
+* **How it works:** Evaluates the truth value of `x` using standard Python truthiness rules.
+* **How to use:** `bool(0)` $\rightarrow$ `False`, `bool([1])` $\rightarrow$ `True`
+* **When to use:** Explicit boolean conversion or logical filtering.
+
+### `bytearray(source, encoding, errors)`
+
+* **How it works:** Returns a mutable sequence of bytes.
+* **How to use:** `b = bytearray(b"hello")`; `b[0] = 101`
+* **When to use:** Modifying binary data, buffers, network packets, or file stream editing.
+
+### `bytes(source, encoding, errors)`
+
+* **How it works:** Returns an immutable sequence of bytes.
+* **How to use:** `bytes('hello', 'utf-8')` $\rightarrow$ `b'hello'`
+* **When to use:** Reading binary files, working with low-level socket data, or encoding text.
+
+### `complex(real, imag)`
+
+* **How it works:** Creates a complex number with real and imaginary parts (`real + imag*j`).
+* **How to use:** `complex(2, 3)` $\rightarrow$ `(2+3j)`
+* **When to use:** Electrical engineering, scientific computing, or complex mathematical formulas.
+
+### `dict(**kwargs)` / `dict(mapping, **kwargs)`
+
+* **How it works:** Creates a key-value dictionary object.
+* **How to use:** `dict(a=1, b=2)` or `dict([('a', 1), ('b', 2)])`
+* **When to use:** Instantiating dictionaries dynamically or mapping key-value pairs.
+
+### `float(x)`
+
+* **How it works:** Converts a number or string to a floating-point number.
+* **How to use:** `float("3.14")` $\rightarrow$ `3.14`
+* **When to use:** Parsing user inputs or performing continuous numeric math.
+
+### `frozenset(iterable)`
+
+* **How it works:** Returns an immutable `frozenset` object.
+* **How to use:** `f = frozenset([1, 2, 3])`
+* **When to use:** Using sets as dictionary keys or set elements where immutability and hashability are required.
+
+### `int(x, base=10)`
+
+* **How it works:** Converts a number or string to an integer, optionally using a specific number base.
+* **How to use:** `int("42")` $\rightarrow$ `42` or `int("FF", 16)` $\rightarrow$ `255`
+* **When to use:** Parsing input strings, base conversions (hex, binary, octal), or floor casting.
+
+### `list(iterable)`
+
+* **How it works:** Converts an iterable into a mutable list.
+* **How to use:** `list((1, 2, 3))` $\rightarrow$ `[1, 2, 3]`
+* **When to use:** Converting generators/tuples into editable, indexable list collections.
+
+### `memoryview(obj)`
+
+* **How it works:** Creates a memory view object that references the buffer of an object without copying.
+* **How to use:** `mv = memoryview(b"abc")`
+* **When to use:** High-performance binary data slicing with zero-copy overhead.
+
+### `object()`
+
+* **How it works:** Returns a featureless object that is the base for all classes.
+* **How to use:** `sentinel = object()`
+* **When to use:** Creating unique sentinel values to distinguish "unset" states from `None`.
+
+### `set(iterable)`
+
+* **How it works:** Constructs an unordered collection of unique elements.
+* **How to use:** `set([1, 2, 2, 3])` $\rightarrow$ `{1, 2, 3}`
+* **When to use:** Deduplicating lists, checking membership efficiently ($O(1)$), or performing set operations.
+
+### `str(object='', encoding='utf-8', errors='strict')`
+
+* **How it works:** Converts an object to its human-readable string representation.
+* **How to use:** `str(100)` $\rightarrow$ `"100"`
+* **When to use:** Displaying values to users, text manipulation, or logging.
+
+### `tuple(iterable)`
+
+* **How it works:** Converts an iterable into an immutable tuple sequence.
+* **How to use:** `tuple([1, 2, 3])` $\rightarrow$ `(1, 2, 3)`
+* **When to use:** Creating read-only sequences or hashable collections.
+
+---
+
+## 3. Iterables, Collections & Sequence Handling
+
+### `all(iterable)`
+
+* **How it works:** Returns `True` if every element in the iterable evaluates to `True` (or if it's empty).
+* **How to use:** `all([True, 1, "yes"])` $\rightarrow$ `True`
+* **When to use:** Verifying that all conditions/validations in a collection pass.
+
+### `any(iterable)`
+
+* **How it works:** Returns `True` if at least one element in the iterable evaluates to `True`.
+* **How to use:** `any([False, 0, "yes"])` $\rightarrow$ `True`
+* **When to use:** Checking if at least one rule, match, or flag is satisfied.
+
+### `enumerate(iterable, start=0)`
+
+* **How it works:** Yields pairs containing a count (from `start`) and the values obtained from iterating over `iterable`.
+* **How to use:** `for i, val in enumerate(["a", "b"]): print(i, val)`
+* **When to use:** When you need both the index and item during loop iteration.
+
+### `filter(function, iterable)`
+
+* **How it works:** Filters elements of an iterable based on whether `function(item)` returns `True`.
+* **How to use:** `list(filter(lambda x: x > 0, [-1, 2, -3, 4]))` $\rightarrow$ `[2, 4]`
+* **When to use:** Filtering sequences without building explicit `for` loops.
+
+### `iter(object, sentinel=None)`
+
+* **How it works:** Returns an iterator object over `object`.
+* **How to use:** `it = iter([1, 2, 3]); next(it)` $\rightarrow$ `1`
+* **When to use:** Creating custom iteration logic or reading streams until reaching a sentinel value.
+
+### `len(s)`
+
+* **How it works:** Returns the number of items in a sequence or collection.
+* **How to use:** `len([1, 2, 3])` $\rightarrow$ `3`
+* **When to use:** Determining collection sizing, range limits, or empty-check logic.
+
+### `map(function, iterable, ...)`
+
+* **How it works:** Applies `function` to every item of `iterable` and yields the results.
+* **How to use:** `list(map(str, [1, 2, 3]))` $\rightarrow$ `['1', '2', '3']`
+* **When to use:** Transforming elements across an entire collection efficiently.
+
+### `next(iterator, default=None)`
+
+* **How it works:** Retrieves the next item from an iterator.
+* **How to use:** `val = next(my_iter, "default_val")`
+* **When to use:** Fetching elements manually or finding the first matching item from a generator.
+
+### `range(start, stop, step)`
+
+* **How it works:** Generates an immutable sequence of numbers from `start` up to `stop`.
+* **How to use:** `list(range(0, 10, 2))` $\rightarrow$ `[0, 2, 4, 6, 8]`
+* **When to use:** Driving `for` loops or building numeric index sequences.
+
+### `reversed(seq)`
+
+* **How it works:** Returns a reverse iterator over a sequence.
+* **How to use:** `list(reversed([1, 2, 3]))` $\rightarrow$ `[3, 2, 1]`
+* **When to use:** Iterating backwards through a list, tuple, or string without modifying the original.
+
+### `slice(start, stop, step)`
+
+* **How it works:** Returns a slice object representing the set of indices specified by `range(start, stop, step)`.
+* **How to use:** `s = slice(0, 2); [10, 20, 30][s]` $\rightarrow$ `[10, 20]`
+* **When to use:** Reusing slice configurations across multiple sequences programmatically.
+
+### `sorted(iterable, key=None, reverse=False)`
+
+* **How it works:** Creates a new sorted list from items in an iterable.
+* **How to use:** `sorted([3, 1, 2])` $\rightarrow$ `[1, 2, 3]`
+* **When to use:** Sorting items without modifying the underlying dataset in place.
+
+### `zip(*iterables, strict=False)`
+
+* **How it works:** Aggregates elements from each of the iterables into tuples.
+* **How to use:** `list(zip(['a', 'b'], [1, 2]))` $\rightarrow$ `[('a', 1), ('b', 2)]`
+* **When to use:** Combining parallel lists or building dictionaries from key/value lists.
+
+---
+
+## 4. Object & Attribute Inspection / Operations
+
+### `callable(object)`
+
+* **How it works:** Returns `True` if the object appears callable (like a function or class).
+* **How to use:** `callable(print)` $\rightarrow$ `True`
+* **When to use:** Validating callback arguments before execution.
+
+### `delattr(object, name)`
+
+* **How it works:** Deletes a named attribute from an object (equivalent to `del obj.name`).
+* **How to use:** `delattr(person, 'age')`
+* **When to use:** Dynamic class attribute cleanup.
+
+### `dir(object)`
+
+* **How it works:** Returns a list of valid attributes and methods on the given object.
+* **How to use:** `dir([])`
+* **When to use:** Debugging and exploring objects interactively in the REPL.
+
+### `getattr(object, name, default=None)`
+
+* **How it works:** Returns the value of a named attribute of an object.
+* **How to use:** `getattr(obj, 'title', 'Untitled')`
+* **When to use:** Accessing attributes dynamically using variable names.
+
+### `hasattr(object, name)`
+
+* **How it works:** Checks whether an object has a given named attribute.
+* **How to use:** `if hasattr(obj, 'run'): obj.run()`
+* **When to use:** Safely feature-checking objects before accessing properties.
+
+### `hash(object)`
+
+* **How it works:** Returns the integer hash value of an object (if it is hashable).
+* **How to use:** `hash("hello")`
+* **When to use:** Key-lookup verification and immutability checks.
+
+### `id(object)`
+
+* **How it works:** Returns the unique identity (memory address) of an object.
+* **How to use:** `id(x)`
+* **When to use:** Verifying if two variables point to the exact same memory reference (`x is y`).
+
+### `isinstance(object, classinfo)`
+
+* **How it works:** Checks if an object is an instance of a class or a tuple of classes.
+* **How to use:** `isinstance(5, int)` $\rightarrow$ `True`
+* **When to use:** Defensive type-checking inside function arguments.
+
+### `issubclass(class, classinfo)`
+
+* **How it works:** Checks if a class is a subclass of another class or tuple of classes.
+* **How to use:** `issubclass(bool, int)` $\rightarrow$ `True`
+* **When to use:** Class hierarchy validation and framework/OOP development.
+
+### `setattr(object, name, value)`
+
+* **How it works:** Sets a named attribute on an object (equivalent to `obj.name = value`).
+* **How to use:** `setattr(user, 'name', 'Alice')`
+* **When to use:** Populating attributes dynamically from config dictionaries or API models.
+
+### `type(object)` / `type(name, bases, dict)`
+
+* **How it works:** Single argument returns the type of an object; 3 arguments dynamically create a new class type.
+* **How to use:** `type(5)` $\rightarrow$ `<class 'int'>`
+* **When to use:** Type inspection or metaprogramming.
+
+---
+
+## 5. Scope, Globals & Code Execution
+
+### `classmethod(function)`
+
+* **How it works:** Converts a standard method into a class method receiving the class (`cls`) as its first argument.
+* **How to use:** `@classmethod\ndef create(cls): ...`
+* **When to use:** Factory methods and alternate object constructors.
+
+### `compile(source, filename, mode)`
+
+* **How it works:** Compiles source code strings into code objects that can be executed by `exec()` or `eval()`.
+* **How to use:** `code = compile('x = 5', '', 'exec')`
+* **When to use:** Metaprogramming, building custom parsers, or optimizing repeated dynamic evaluations.
+
+### `eval(expression, globals=None, locals=None)`
+
+* **How it works:** Parses and evaluates a single string expression as Python code.
+* **How to use:** `eval("2 + 2")` $\rightarrow$ `4`
+* **When to use:** Evaluating dynamic math expressions. *(Caution: Avoid with untrusted user input).*
+
+### `exec(object, globals=None, locals=None)`
+
+* **How it works:** Dynamically executes complex Python statements/blocks of code.
+* **How to use:** `exec("for i in range(3): print(i)")`
+* **When to use:** Dynamic code generation and plugin execution environments.
+
+### `globals()`
+
+* **How it works:** Returns a dictionary representing the current global symbol table.
+* **How to use:** `globals()['my_var']`
+* **When to use:** Inspecting global variables or dynamic function routing.
+
+### `locals()`
+
+* **How it works:** Returns a dictionary representing the current local symbol table.
+* **How to use:** `locals()`
+* **When to use:** Debugging local context or passing local variables into format templates.
+
+### `property(fget=None, fset=None, fdel=None, doc=None)`
+
+* **How it works:** Creates managed properties for class attributes.
+* **How to use:** `@property\ndef age(self): return self._age`
+* **When to use:** Encapsulation, adding getters/setters, and computing dynamic attributes on access.
+
+### `staticmethod(function)`
+
+* **How it works:** Converts a method into a static method (receives neither `self` nor `cls`).
+* **How to use:** `@staticmethod\ndef add(a, b): return a + b`
+* **When to use:** Grouping utility functions logically inside a class context.
+
+### `super(type=None, object_or_type=None)`
+
+* **How it works:** Returns a proxy object delegating method calls to a parent or sibling class.
+* **How to use:** `super().__init__()`
+* **When to use:** Object inheritance when extending parent class initialization or method logic.
+
+---
+
+## 6. Text, Input/Output & Utility
+
+### `ascii(object)`
+
+* **How it works:** Returns a string with printable characters intact while escaping non-ASCII characters using `\x`, `\u`, or `\U`.
+* **How to use:** `ascii("pythön")` $\rightarrow$ `'pyth\\xf6n'`
+* **When to use:** Escaping text safely for ASCII-only logging or terminal output.
+
+### `bin(x)`
+
+* **How it works:** Converts an integer to a binary string prefixed with `'0b'`.
+* **How to use:** `bin(10)` $\rightarrow$ `'0b1010'`
+* **When to use:** Bitwise operations, low-level binary analysis, and debugging.
+
+### `chr(i)`
+
+* **How it works:** Returns the Unicode character matching the given integer code point.
+* **How to use:** `chr(97)` $\rightarrow$ `'a'`
+* **When to use:** Encoding conversions, generating character ranges, or working with ASCII values.
+
+### `format(value, format_spec='')`
+
+* **How it works:** Formats a value according to a specified format specification.
+* **How to use:** `format(0.5, '.2%')` $\rightarrow$ `'50.00%'`
+* **When to use:** Custom number and string formatting outside f-strings.
+
+### `hex(x)`
+
+* **How it works:** Converts an integer to a lowercase hexadecimal string prefixed with `'0x'`.
+* **How to use:** `hex(255)` $\rightarrow$ `'0xff'`
+* **When to use:** Working with color codes, memory addresses, or byte values.
+
+### `input(prompt='')`
+
+* **How it works:** Reads a line of input from standard input (keyboard) as a string.
+* **How to use:** `name = input("Enter name: ")`
+* **When to use:** Command-line interfaces and interactive user scripts.
+
+### `oct(x)`
+
+* **How it works:** Converts an integer to an octal string prefixed with `'0o'`.
+* **How to use:** `oct(8)` $\rightarrow$ `'0o10'`
+* **When to use:** System permissions (e.g., `0o755`) and low-level calculations.
+
+### `open(file, mode='r', encoding=None)`
+
+* **How it works:** Opens a file and returns its corresponding file object stream.
+* **How to use:** `with open('file.txt', 'r') as f: text = f.read()`
+* **When to use:** Reading, writing, or appending to files on disk.
+
+### `ord(c)`
+
+* **How it works:** Takes a single Unicode character and returns its integer code point.
+* **How to use:** `ord('a')` $\rightarrow$ `97`
+* **When to use:** Cipher creation, sorting algorithms, and character encoding operations.
+
+### `print(*objects, sep=' ', end='\n', file=None, flush=False)`
+
+* **How it works:** Prints objects to the text stream file (defaults to `sys.stdout`).
+* **How to use:** `print("Hello", "World", sep="-")`
+* **When to use:** Displaying information to users or quick terminal debugging.
+
+### `repr(object)`
+
+* **How it works:** Returns a string containing a printable representation of an object (typically looks like valid Python code to recreate the object).
+* **How to use:** `repr("hello")` $\rightarrow$ `"'hello'"`
+* **When to use:** Logging, debugging, and class development (`__repr__`).
+
+---
+
+## 7. Special System & Environment Functions
+
+### `breakpoint(*args, **kws)`
+
+* **How it works:** Drops into the configured interactive debugger (defaults to `pdb`).
+* **How to use:** `breakpoint()`
+* **When to use:** Pausing code execution directly inside scripts for debugging.
+
+### `help(request)`
+
+* **How it works:** Invokes the built-in interactive help system and docstring browser.
+* **How to use:** `help(str.replace)`
+* **When to use:** Exploring library documentation interactively in the REPL.
+
+### `aenter()` / `aiter()` / `anext()` / `asend()` (Async Utilities)
+
+* **`aiter(async_iterable)`**: Returns an asynchronous iterator for an async iterable.
+* **`anext(async_iterator, default=None)`**: Awaits and returns the next item from an async iterator.
+* **When to use:** Processing asynchronous streams, streams over WebSockets, or async database cursoring.
+
+---
+
+## 8. Legacy / Advanced
+
+### `__import__(name, globals=None, locals=None, fromlist=(), level=0)`
+
+* **How it works:** Low-level function called by the `import` statement.
+* **How to use:** `math = __import__('math')`
+* **When to use:** Dynamic module loading (though `importlib.import_module()` is preferred for modern code).
