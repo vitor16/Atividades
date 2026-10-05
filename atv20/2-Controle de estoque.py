@@ -35,98 +35,130 @@ Quantidade mínima: 5
 O código deverá ser utilizado como identificador do produto.'''
 
 estoque = []
-numDestq = 0
-def aDd_estq():
-    #global denovo devido ao maldito escopo de variaveis, para poder alterar o valor da variavel global dentro da função
-        global numDestq
-        global codigo
-        global nome
-        global quantidade 
-        global situacao
-    
-        #enquanto o numero de equipamentos cadastrados for menor que 3, ele vai continuar pedindo para cadastrar
-        while numDeq <5:
-            print("========Cadastro de estoque========")
-            print()
-    
-            #enquanto o usuario nao digitar um numero, ele vai continuar pedindo para digitar o codigo do equipamento
-            while True:
-                try:
-                #se o usuario digitar um valor que nao seja numerico, ele vai mostrar uma mensagem de erro e pedir para digitar novamente
-                    codigo = int(input(f"Digite o número de código do {numDestq+1}º produto: "))      
-                    break
-                except ValueError:
-                    print("CODIGO precisa ser númeral")  
-    
-            #enquanto o usuario nao digitar um valor que seja apenas letras, ele vai continuar pedindo para digitar o nome do equipamento
-            while True:
-                nome = input(f"Digite o nome do {numDestq+1}º produto: ")
-                #se o usuario digitar um valor que seja apenas numeros, ele vai mostrar uma mensagem de erro e pedir para digitar novamente
-                if nome.isdigit():
-                    print("Nome precisa ser com letras")
-                else:
-                    break
-    
-            #enquanto o usuario nao digitar um valor que seja apenas letras, ele vai continuar pedindo para digitar o tipo do equipamento
-            while True:
-                tipo = input(f"Digite a categoria do {numDestq+1}º produto: ")
-                if tipo.isdigit():
-                    print("TIPO precisa ser com letras")
-                else:
-                    break
-    
-            #enquanto o usuario nao digitar um numero, ele vai continuar pedindo para digitar a quantidade do equipamento
-            while True:
-                try:
-                    quantidade = int(input(f"Digite a quantidade do {numDestq+1}º produto: "))      
-                    break
-                except ValueError:
-                    print("QUANTIDADE precisa ser númeral")  
-    
-            #enquanto o usuario nao digitar um valor que seja apenas letras, ele vai continuar pedindo para digitar a situacao do equipamento
-            while True:
-                quantidade_minima = input(f"Digite a quantidade mínima do {numDestq+1}º produto: ")
-    
-                if situacao.isdigit():
-                    print("SITUAÇÃO precisa ser com letras")
-                else:
-                    break
 
-            numDestq += 1
-            
-                
-                    #cria um dicionário para armazenar as informações do equipamento e adiciona o dicionário à lista de equipamentos
-            items = {
-                        "cOdigo": codigo,
-                        "nOme": nome,
-                        "tIpo": tipo,
-                        "qUantidade": quantidade,
-                        "sItuacao": quantidade_minima
-                }
-            estoque.append(items)
-def mOs_estq():
-    if len(estoque) ==0:
-        print("Nenhum item registrado ainda")
-        
-    else:
-        print("Equipamentos cadastrados:")
-        for equip in estoque:
-            print(equip)
-def saIda():
-    print("saindo...")
-    exit()
+
+def cadastrar_produto():
+    codigo = None
+    while True:
+        try:
+            codigo = int(input("Digite o código do produto: "))
+            if any(produto["codigo"] == codigo for produto in estoque):
+                print("Código já cadastrado. Digite outro.")
+                continue
+            break
+        except ValueError:
+            print("Código precisa ser numérico.")
+
+    while True:
+        nome = input("Digite o nome do produto: ")
+        if nome.strip() and not nome.isdigit():
+            break
+        print("Nome inválido. Digite um nome válido.")
+
+    while True:
+        categoria = input("Digite a categoria do produto: ")
+        if categoria.strip() and not categoria.isdigit():
+            break
+        print("Categoria inválida. Digite um nome válido.")
+
+    while True:
+        try:
+            quantidade = int(input("Digite a quantidade atual: "))
+            break
+        except ValueError:
+            print("Quantidade precisa ser numérica.")
+
+    while True:
+        try:
+            quantidade_minima = int(input("Digite a quantidade mínima: "))
+            break
+        except ValueError:
+            print("Quantidade mínima precisa ser numérica.")
+
+    while True:
+        try:
+            preco = float(input("Digite o preço do produto: "))
+            break
+        except ValueError:
+            print("Preço precisa ser numérico.")
+
+    produto = {
+        "codigo": codigo,
+        "nome": nome,
+        "categoria": categoria,
+        "quantidade": quantidade,
+        "quantidade_minima": quantidade_minima,
+        "preco": preco,
+    }
+    estoque.append(produto)
+    print("Produto cadastrado com sucesso!")
+
+
+def cadastrar_estoque():
+    while len(estoque) < 5:
+        print("\n==== Cadastro de produto ====")
+        cadastrar_produto()
+
+    print("\nEstoque completo: 5 produtos cadastrados.")
+
+
+def mostrar_estoque():
+    if not estoque:
+        print("Nenhum produto cadastrado.")
+        return
+
+    print("\n==== Produtos cadastrados ====")
+    for produto in estoque:
+        print(f"Código: {produto['codigo']}")
+        print(f"Nome: {produto['nome']}")
+        print(f"Categoria: {produto['categoria']}")
+        print(f"Quantidade atual: {produto['quantidade']}")
+        print(f"Quantidade mínima: {produto['quantidade_minima']}")
+        print(f"Preço: R$ {produto['preco']:.2f}")
+        print("-" * 30)
+
+
+def produtos_abaixo_ou_igual_minimo():
+    print("\n==== PRODUTOS QUE NECESSITAM DE REPOSIÇÃO ====\n")
+    encontrado = False
+
+    for produto in estoque:
+        if produto["quantidade"] <= produto["quantidade_minima"]:
+            print(f"Código: {produto['codigo']}")
+            print(f"Produto: {produto['nome']}")
+            print(f"Quantidade atual: {produto['quantidade']}")
+            print(f"Quantidade mínima: {produto['quantidade_minima']}")
+            print("-" * 30)
+            encontrado = True
+
+    if not encontrado:
+        print("Nenhum produto está abaixo ou igual à quantidade mínima.")
+
+
 while True:
-    print("========Menu Principal========")
-    print()
-    print("1-Adicionar item ao estoque")
-    print("2-Checar quantidade no estoque")
-    print("0-sair")
-    print()        
-    opcao= input("oque deseja fazer hoje: ")
+    print("\n======== Menu Principal ========")
+    print("1 - Cadastrar produtos")
+    print("2 - Mostrar estoque")
+    print("3 - Ver produtos abaixo da quantidade mínima")
+    print("0 - Sair")
+
+    opcao = input("Escolha uma opção: ")
+
     if opcao == "1":
-        aDd_estq()
+        if len(estoque) >= 5:
+            print("O estoque já está completo.")
+        else:
+            cadastrar_estoque()
     elif opcao == "2":
-
-
-
+        mostrar_estoque()
+    elif opcao == "3":
+        if not estoque:
+            print("Cadastre produtos antes de verificar a reposição.")
+        else:
+            produtos_abaixo_ou_igual_minimo()
+    elif opcao == "0":
+        print("Saindo do sistema...")
+        break
+    else:
+        print("Opção inválida. Digite uma opção do menu.")
     
