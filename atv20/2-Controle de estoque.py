@@ -34,54 +34,58 @@ Quantidade atual: 3
 Quantidade mínima: 5
 O código deverá ser utilizado como identificador do produto.'''
 
+
+#definir a lista de produtos
 estoque = []
 
-
+#função para cadastrar produtos
 def cadastrar_produto():
     codigo = None
     while True:
         try:
+            # Solicitar o código do produto e verificar se já existe no estoque
             codigo = int(input("Digite o código do produto: "))
             if any(produto["codigo"] == codigo for produto in estoque):
                 print("Código já cadastrado. Digite outro.")
+                #se o código já existir, solicitar outro código
                 continue
             break
         except ValueError:
             print("Código precisa ser numérico.")
-
+#loop para solicitar o nome do produto, garantindo que não seja vazio ou numérico
     while True:
         nome = input("Digite o nome do produto: ")
         if nome.strip() and not nome.isdigit():
             break
         print("Nome inválido. Digite um nome válido.")
-
+#loop para solicitar a categoria do produto, garantindo que não seja vazio ou numérico
     while True:
         categoria = input("Digite a categoria do produto: ")
         if categoria.strip() and not categoria.isdigit():
             break
         print("Categoria inválida. Digite um nome válido.")
-
+#loop para solicitar a quantidade atual do produto, garantindo que seja numérico
     while True:
         try:
             quantidade = int(input("Digite a quantidade atual: "))
             break
         except ValueError:
             print("Quantidade precisa ser numérica.")
-
+#loop para solicitar a quantidade mínima do produto, garantindo que seja numérico
     while True:
         try:
             quantidade_minima = int(input("Digite a quantidade mínima: "))
             break
         except ValueError:
             print("Quantidade mínima precisa ser numérica.")
-
+#loop para solicitar o preço do produto, garantindo que seja numérico
     while True:
         try:
             preco = float(input("Digite o preço do produto: "))
             break
         except ValueError:
             print("Preço precisa ser numérico.")
-
+# Criar o dicionário do produto e adicioná-lo à lista de estoque
     produto = {
         "codigo": codigo,
         "nome": nome,
@@ -93,19 +97,13 @@ def cadastrar_produto():
     estoque.append(produto)
     print("Produto cadastrado com sucesso!")
 
-
-def cadastrar_estoque():
-    while len(estoque) < 5:
-        print("\n==== Cadastro de produto ====")
-        cadastrar_produto()
-
-    print("\nEstoque completo: 5 produtos cadastrados.")
-
+#função para mostrar o estoque de produtos cadastrados
 
 def mostrar_estoque():
     if not estoque:
         print("Nenhum produto cadastrado.")
         return
+#descobri que \n é usado para pular uma linha, então usei ele para separar a apresentação dos produtos ao inves de print()
 
     print("\n==== Produtos cadastrados ====")
     for produto in estoque:
@@ -116,8 +114,15 @@ def mostrar_estoque():
         print(f"Quantidade mínima: {produto['quantidade_minima']}")
         print(f"Preço: R$ {produto['preco']:.2f}")
         print("-" * 30)
-
-
+#função para cadastrar produtos até que o estoque esteja completo (5 produtos)
+def cadastrar_estoque():
+    while len(estoque) < 5:
+        cadastrar_produto()
+        if len(estoque) < 5:
+            print(f"Você cadastrou {len(estoque)} produto(s). Faltam {5 - len(estoque)} para completar o estoque.")
+        else:
+            print("Estoque completo. Não é possível cadastrar mais produtos.")
+#função para verificar quais produtos estão abaixo ou igual à quantidade mínima
 def produtos_abaixo_ou_igual_minimo():
     print("\n==== PRODUTOS QUE NECESSITAM DE REPOSIÇÃO ====\n")
     encontrado = False
@@ -134,7 +139,7 @@ def produtos_abaixo_ou_igual_minimo():
     if not encontrado:
         print("Nenhum produto está abaixo ou igual à quantidade mínima.")
 
-
+# Loop principal do programa
 while True:
     print("\n======== Menu Principal ========")
     print("1 - Cadastrar produtos")

@@ -84,19 +84,25 @@ def cadastrar_livro():
     }
     livros.append(livro)
     print("Livro cadastrado com sucesso!")
+#função para consultar um livro pelo código,
+# caso o livro seja encontrado, suas informações são retornadas,
 def consulta_livro(codigo):
     for livro in livros:
         if livro["codigo"] == codigo:
             return livro
     return None
+#função para listar todos os livros cadastrados,
 def listar_livros():
     if not livros:
         print("Nenhum livro cadastrado.")
     else:
         print("\n==== Lista de livros cadastrados ====")
+        #aqui, para cada livro na lista de livros, suas informações são exibidas.
         for livro in livros:
             print(f"Código: {livro['codigo']}, Título: {livro['titulo']}, Autor: {livro['autor']}, Ano: {livro['ano_publicacao']}, Quantidade disponível: {livro['quantidade_disponivel']}")
 
+# Loop principal do programa, onde o usuário pode escolher entre cadastrar livros, listar livros, 
+# buscar um livro por código ou sair do programa.
 while True:
     print("====Menu de opções====")
     print("1 - Cadastrar livro")
