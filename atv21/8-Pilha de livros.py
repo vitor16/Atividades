@@ -26,18 +26,26 @@ Retirando: Livro 2
 Retirando: Livro 1'''
 
 #define a lista
-livros = []
+livros = ["livro 1","livro 2","livro 3","livro 4","livro 5"]
 
-livros.append("livro 1")
-livros.append("livro 2")
-livros.append("livro 3")
-livros.append("livro 4")
-livros.append("livro 5")
+#mostra lista de livros
 
 print("Livros:", livros)
 
-retirado = livros.pop()
+# loop de for para esvaziar a lista
+for i in livros:
 
-for i in range
-print("livro retirado:", retirado)
-print("pilha de livros após retirada:", livros)
+    if not livros:
+        print("Lista Vazia")
+        exit()
+    while len(livros) > 0:
+        retirado = livros.pop(0)
+        print("livro retirado:", retirado)
+        print("pilha de livros após retirada:", livros)
+
+    if not livros:
+        print("Lista Vazia")
+        exit()
+
+
+
