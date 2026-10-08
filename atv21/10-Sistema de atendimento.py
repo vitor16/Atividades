@@ -45,3 +45,53 @@ Clientes restantes: 0
 
 Fila vazia.
 Todos os clientes foram atendidos.'''
+#importa função sleep
+from time import sleep
+#cria lista vazia
+fila = []
+#funçoes
+def add():
+    #pede 4 nomes
+    for i in range(4):
+        nome= input("Digite o nome do cliente:")
+        fila.append(nome)
+
+def show():
+    #mostra a fila
+    for i in fila:
+        print(i)
+
+def atend():
+    #remove items da fila
+    for i in range(len(fila)):
+            if not fila:
+                print("Ninguem cadastrado!")
+            else:
+                sleep(1)
+                print(f"Atendendo {fila[0]} ")
+                sleep(1)
+                lixeira = fila.pop(0)
+                print("Clientes na fila:", fila)
+                sleep(1)
+    print("todos os clientes foram atendidos")
+
+#loop principal
+while True:
+    print("======MENU======")
+    print("1-Adicionar clientes(nomes)")
+    print("2-Exibir fila")
+    print("3-Atender em ordem")
+    print("4-sair")
+    opcao = input("Oque  deseja hoje kk: ")
+    if opcao == "1":
+         add()
+    elif opcao == "2":
+             show()
+    elif opcao == "3":
+             atend()
+    elif opcao == "4":
+             print("Saindo......")
+             exit()
+    
+
+

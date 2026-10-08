@@ -22,3 +22,33 @@ Desfazendo: Adicionou um produto
 Desfazendo: Alterou o endereço
 Desfazendo: Digitou o nome
 Observe que a ordem de saída é inversa da ordem de entrada.'''
+
+#lista de credenciais
+creden = []
+
+#pedi as variaveis que o enunciado pediu
+nome = input("Digite seu Nome: ")
+creden.append(nome)
+eNd = input("Digite seu endereço: ")
+creden.append(eNd)
+pRod = input("Digite o produto: ")
+creden.append(pRod)
+tEl = input("Digite seu numero de telefone: ")
+creden.append(tEl)
+#num é apenas para mostrar em ordem
+
+num = 3
+
+
+
+
+for i in range(4):
+    #printa os que estao sendo disfeitos em ordem de ultimo que entrou primeiro a sair
+    print(f"\n Desfazendo: ",creden[num])
+    creden.pop()
+    num -=1
+    print("Lista atual: ",creden)
+    if not creden:
+        print("Lista agora vazia!")
+    
+    
