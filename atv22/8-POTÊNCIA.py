@@ -27,3 +27,17 @@ potencia(5, 2) → 25
 potencia(3, 3) → 27
 potencia(10, 2) → 100'''
 
+# Função recursiva para calcular a potência de uma base.
+# Caso base: qualquer número elevado a 0 resulta em 1.
+def potencia(base, expoente):
+    if expoente == 0:
+        return 1
+    # Reduz o problema: base^expoente = base * base^(expoente - 1)
+    return base * potencia(base, expoente - 1)
+
+
+# Pede a base e o expoente ao usuário e mostra o resultado.
+base = int(input("Digite a base: "))
+expoente = int(input("Digite o expoente: "))
+print(f"{base}^{expoente} = {potencia(base, expoente)}")
+

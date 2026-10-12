@@ -38,3 +38,18 @@ fibonacci(1) → 1
 fibonacci(6) → 8
 fibonacci(7) → 13'''
 
+# Função recursiva para calcular o termo da sequência de Fibonacci.
+# Casos base: F(0) = 0 e F(1) = 1.
+def fibonacci(posicao):
+    if posicao == 0:
+        return 0
+    if posicao == 1:
+        return 1
+    # Cada termo depende dos dois anteriores
+    return fibonacci(posicao - 1) + fibonacci(posicao - 2)
+
+
+# Pede a posição desejada e mostra o valor correspondente.
+posicao = int(input("Digite a posição da sequência de Fibonacci: "))
+print(f"Fibonacci({posicao}) = {fibonacci(posicao)}")
+
