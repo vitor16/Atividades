@@ -9,11 +9,9 @@ caixas completas.
 • Desafio adicional: apresente os dois resultados em uma única mensagem.
 '''
 pecas=pecas2=47
-caixas = pecas // 6
+caixas = pecas % 8
 print("Com ",pecas," peças é possível fazer ",caixas," caixas")
 enter = input("Aperte ENTER para continuar para o método 2(resto %= numero)")
-
-
 
 print("Com", materiais," Materiais é possível fazer ",kits," kits")
 print("desafio:")
