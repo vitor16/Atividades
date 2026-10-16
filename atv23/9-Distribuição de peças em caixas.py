@@ -2,17 +2,24 @@
 Um depósito precisa organizar 47 peças em caixas com seis unidades. O sistema
 deverá informar quantas caixas completas podem ser preenchidas e quantas
 peças permanecerão fora das caixas completas.
-• Operador original: resto = numero % divisor
-• Operador equivalente: resto = numero seguido de resto %= divisor
-• Tarefa: calcule o resto da divisão de 47 por 6 e determine a quantidade de
-caixas completas.
+• Solução 1: use caixas = pecas // 6 e sobras = pecas % 6.
+• Solução 2: use caixas //= 6 e sobras %= 6 em cópias da quantidade inicial.
+• Tarefa: calcule quantas caixas completas podem ser preenchidas e quantas
+peças sobram.
 • Desafio adicional: apresente os dois resultados em uma única mensagem.
 '''
-pecas=pecas2=47
-caixas = pecas % 8
-print("Com ",pecas," peças é possível fazer ",caixas," caixas")
-enter = input("Aperte ENTER para continuar para o método 2(resto %= numero)")
+# Solucao 1: // informa caixas completas e % informa as pecas que sobram.
+pecas = 47
+caixas = pecas // 6
+sobras = pecas % 6
+print(f"Solucao 1: {caixas} caixas completas e {sobras} pecas restantes.")
 
-print("Com", materiais," Materiais é possível fazer ",kits," kits")
-print("desafio:")
-print("com esses materiais somados temos: ",kits*4," e sobra ",materiais2-kits*4,"pois é necessário 4 por kit")
+# Solucao 2: os operadores //= e %= atualizam as quantidades diretamente.
+caixas_abreviadas = pecas
+sobras_abreviadas = pecas
+caixas_abreviadas //= 6
+sobras_abreviadas %= 6
+print(
+    f"Solucao 2: {caixas_abreviadas} caixas completas e "
+    f"{sobras_abreviadas} pecas restantes."
+)

@@ -1,43 +1,20 @@
 '''
-Uma aplicação registra quantas vezes determinado usuário acessa uma
-funcionalidade. O contador começa em zero e precisa ser atualizado a cada
-acesso. Após três acessos, o programa deverá apresentar o total registrado.
-• Operador original: contador = contador + 1
-• Operador equivalente: contador += 1
-
-• Tarefa: inicie contador com zero, incremente seu valor três vezes e exiba o
-resultado após cada atualização.
-• Desafio adicional: confira se o valor final corresponde à quantidade de
-acessos registrados.
+Um contador de acessos começa em zero e deve ser atualizado três vezes.
+• Solução 1: use contador = contador + 1.
+• Solução 2: use contador += 1.
+• Tarefa: apresente o total após cada atualização e confira o total final.
 '''
+
+# Solução 1: soma 1 explicitamente ao contador em cada acesso.
 contador = 0
+for acesso in range(1, 4):
+    contador = contador + 1
+    print(f"Solução 1 - acesso {acesso}: {contador}")
+print(f"Total da solução 1: {contador}")
 
-#menu principal
-while True:
-    #condicional para contador
-    if contador <= 2:
-        print()
-        print("========Menu========")
-    #espaçamento
-        print()
-        print("1-fazer acesso a funcionalidade ")
-        print("1-fazer acesso a funcionalidade tamém mas diferente ")
-    #espaçamento diferente
-        print(f"\n0- sair")
-        opcao = input(f"\ndigite a operação desejada: ")
-    
-        if opcao == "1":
-            contador += 1
-            print("Acesso liberado, numero de acessos: ",contador)
-        elif opcao == "2":
-                    contador = contador + 1
-                    print("Acesso liberado, numero de acessos registrados: ",contador)
-        elif opcao == "0":
-            print("Saindo...")
-            exit()
-        else:
-            print("Tente novamente, opção incorreta!!")
-    else:
-
-        print("3 acessos, máximo atingido ")
-        break
+# Solução 2: += soma 1 e atualiza o contador na mesma operação.
+contador_abreviado = 0
+for acesso in range(1, 4):
+    contador_abreviado += 1
+    print(f"Solução 2 - acesso {acesso}: {contador_abreviado}")
+print(f"Total da solução 2: {contador_abreviado}")

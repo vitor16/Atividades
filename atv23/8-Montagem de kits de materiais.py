@@ -9,18 +9,19 @@ materiais sobrarão.
 • Desafio adicional: confirme se a soma dos materiais utilizados nos kits
 com as sobras corresponde ao total recebido.
 '''
-materiais=materiais2=53
+# Solucao 1: // calcula kits completos e % calcula os materiais restantes.
+materiais = 53
 kits = materiais // 4
-print("Com ",materiais," materiais é possível fazer ",kits," kits")
-print("desafio:")
-print("com esses materiais somados temos: ",kits*4," e sobra ",materiais2-kits*4,"pois é necessário 4 por kit")
+sobras = materiais % 4
+print(f"Solucao 1: {kits} kits completos e {sobras} materiais restantes.")
+print(f"Conferencia: {kits} * 4 + {sobras} = {kits * 4 + sobras}.")
 
-enter = input("Aperte ENTER para continuar para o método 2(quantidade //= divisor)")
-
-kits *=  4
-kits += 1
-kits //= 4
-
-print("Com", materiais," Materiais é possível fazer ",kits," kits")
-print("desafio:")
-print("com esses materiais somados temos: ",kits*4," e sobra ",materiais2-kits*4,"pois é necessário 4 por kit")
+# Solucao 2: //= e %= atualizam as variaveis com os mesmos resultados.
+quantidade_para_kits = materiais
+quantidade_para_sobras = materiais
+quantidade_para_kits //= 4
+quantidade_para_sobras %= 4
+print(
+    f"Solucao 2: {quantidade_para_kits} kits completos e "
+    f"{quantidade_para_sobras} materiais restantes."
+)

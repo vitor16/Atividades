@@ -10,15 +10,17 @@ quantidade final.
 '''
 
 
+# Solucao 1: multiplicacao tradicional, total = total * fator.
 total = 35
-
-print("Seu total de etiquetas é: ",total)
-
-total *= 4
-
-print("método 1(total *= 4):  ",total)
-
-total /= 4
+print(f"Quantidade inicial: {total} etiquetas")
 total = total * 4
-print("método 2(total = total * 4):  ", total)
+print(f"Depois de produzir quatro lotes: {total} etiquetas")
+total = total * 2
+print(f"Depois de duplicar a producao: {total} etiquetas")
 
+# Solucao 2: *= multiplica e atualiza a variavel em uma unica operacao.
+total_abreviado = 35
+total_abreviado *= 4
+print(f"\nSolucao abreviada - apos multiplicar por 4: {total_abreviado}")
+total_abreviado *= 2
+print(f"Solucao abreviada - quantidade final: {total_abreviado} etiquetas")

@@ -8,3 +8,17 @@ atualizado após cada recebimento.
 • Desafio adicional: apresente o saldo após cada lançamento e o total
 acumulado ao final.
 '''
+
+# Solucao 1: soma cada lancamento com total = total + valor.
+total = 1200.00
+for lancamento in (150.00, 275.00, 90.00):
+    total = total + lancamento
+    print(f"Solucao 1 - saldo apos lancamento: R$ {total:.2f}")
+print(f"Solucao 1 - saldo final: R$ {total:.2f}")
+
+# Solucao 2: += realiza a mesma soma atualizando o saldo diretamente.
+total_abreviado = 1200.00
+for lancamento in (150.00, 275.00, 90.00):
+    total_abreviado += lancamento
+    print(f"Solucao 2 - saldo apos lancamento: R$ {total_abreviado:.2f}")
+print(f"Solucao 2 - saldo final: R$ {total_abreviado:.2f}")

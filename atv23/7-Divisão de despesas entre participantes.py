@@ -1,43 +1,23 @@
 '''
-Cinco colegas contrataram um serviço por R$ 675,00 e decidiram dividir
-igualmente a despesa. Em seguida, cada participante recebeu um desconto
-individual de R$ 15,00 sobre sua parte.
-• Operador original: valor = valor / divisor
-• Operador equivalente: valor /= divisor
-• Tarefa: calcule o valor por participante e aplique o desconto individual.
-• Desafio adicional: mostre o valor antes e depois do desconto.
+Cinco colegas dividem igualmente uma despesa de R$ 675,00 e cada participante
+recebe um desconto individual de R$ 15,00 sobre sua parte.
+• Solução 1: divida o valor total com valor = valor / divisor.
+• Solução 2: use valor /= divisor.
+• Tarefa: apresente o valor por pessoa antes e depois do desconto.
+• Desafio adicional: mostre o total pago pelo grupo após os descontos.
 '''
 
-servico = 675
-c1=c2=c3=c4=c5=0
+# Solução 1: calcula a parte de cada pessoa e subtrai o desconto.
+parte = 675.00 / 5
+parte_com_desconto = parte - 15.00
+print(f"Solução 1 - valor por pessoa antes do desconto: R$ {parte:.2f}")
+print(f"Solução 1 - valor por pessoa após o desconto: R$ {parte_com_desconto:.2f}")
+print(f"Total pago pelo grupo: R$ {parte_com_desconto * 5:.2f}")
 
-print("o serviço custa R$ ", servico)
-print("mas eles quiseram pagar ele( o serviço ), separadamente")
-
-servico /= 5
-c1=c2=c3=c4=c5=servico
-total = c1+c2+c3+c4+c5
-
-print("ficou R$ ",c1," para cada")
-print(" ou seja")
-print("Primeiro participante: R$", c1)
-print("Segundo participante: R$", c2)
-print("Terceiro participante: R$", c3)
-print("Quarto participante: R$", c4)
-print("Quinto participante: R$", c5)
-print()
-print("total: ", total )
-
-c1=c2=c3=c4=c5 = c1=c2=c3=c4=c5-15
-total = c1+c2+c3+c4+c5
-
-print()
-print("ficou R$ ",c1," para cada depois do desconto de R$ 15")
-print(" ou seja")
-print("Primeiro participante: R$", c1)
-print("Segundo participante: R$", c2)
-print("Terceiro participante: R$", c3)
-print("Quarto participante: R$", c4)
-print("Quinto participante: R$", c5)
-print()
-print("total: ", total )
+# Solução 2: divide e desconta atualizando o valor com operadores compostos.
+parte_abreviada = 675.00
+parte_abreviada /= 5
+print(f"\nSolução 2 - valor por pessoa antes do desconto: R$ {parte_abreviada:.2f}")
+parte_abreviada -= 15.00
+print(f"Solução 2 - valor por pessoa após o desconto: R$ {parte_abreviada:.2f}")
+print(f"Total pago pelo grupo: R$ {parte_abreviada * 5:.2f}")

@@ -10,27 +10,23 @@ apresentar o saldo restante após cada transação.
 terceira compra de R$ 200,00.
 '''
 
-from time import sleep
+# Solucao 1: atualiza o saldo escrevendo a subtracao completa.
+saldo = 500.00
+print(f"Saldo inicial: R$ {saldo:.2f}")
+saldo = saldo - 125.00
+print(f"Depois da primeira compra: R$ {saldo:.2f}")
+saldo = saldo - 89.00
+print(f"Depois da segunda compra: R$ {saldo:.2f}")
 
-capital = 500.00
-shopee = 125.00
-meli = 89.00
-print(f"temos R$ {capital} de saldo inicial")
-sleep(3)
-capital -= shopee
-print(f"compra na shopee no valor de R$ {shopee}, ficando com {capital}")
-sleep(4)
-print("Ah sim..")
-capital = capital - meli
-sleep(1)
-print(f"E ainda por cima você gastou no mercado livre, ficando com {capital}")
-sleep(3)
-print("Você gastou: ", 500 - capital)
-sleep(2)
-print("Espero que tenha valido a pena")
-sleep(1)
-if capital >= 200:
-    print("Seu saldo é de ", capital," ou seja ainda tem dinheiro para uma compra de R$ 200")
-    sleep(2)
-    print("mas ficaria com R$ ", capital - 200)
+# Solucao 2: o operador -= faz a mesma subtracao de forma abreviada.
+saldo_abreviado = 500.00
+saldo_abreviado -= 125.00
+print(f"\nSolucao abreviada - apos a primeira compra: R$ {saldo_abreviado:.2f}")
+saldo_abreviado -= 89.00
+print(f"Solucao abreviada - apos a segunda compra: R$ {saldo_abreviado:.2f}")
 
+# O desafio verifica se ainda e possivel pagar uma terceira compra de R$ 200.
+if saldo_abreviado >= 200.00:
+    print(f"Saldo suficiente. Restariam R$ {saldo_abreviado - 200.00:.2f}.")
+else:
+    print("Saldo insuficiente para a terceira compra de R$ 200,00.")

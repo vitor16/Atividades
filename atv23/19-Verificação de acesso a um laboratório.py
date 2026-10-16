@@ -9,3 +9,15 @@ acesso está liberado.
 Compare not sala_bloqueada com sala_bloqueada == False. O operador ! não é
 válido em Python para essa finalidade.
 '''
+
+# Solucao 1: o acesso esta livre quando nao existe bloqueio.
+print("Solucao 1 | Solucao 2")
+for sala_bloqueada in (False, True):
+    acesso_liberado = not sala_bloqueada
+
+    # Solucao 2: verificar se o bloqueio e exatamente False e equivalente.
+    acesso_equivalente = sala_bloqueada == False
+    print(
+        f"Sala bloqueada={sala_bloqueada}: "
+        f"{acesso_liberado} | {acesso_equivalente}"
+    )

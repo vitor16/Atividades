@@ -1,29 +1,24 @@
 '''
-Uma equipe de desenvolvimento possui um orçamento inicial de R$ 2.500,00.
-Durante o planejamento, recebe R$ 750,00 adicionais para adquirir equipamentos
-e mais R$ 300,00 para materiais de consumo. O sistema precisa atualizar o
-orçamento acumulado após cada acréscimo.
-• Operador original: orcamento = orcamento + valor
-• Operador equivalente: orcamento += valor
-• Tarefa: inicie orcamento com 2500 e adicione os dois valores
-separadamente.
-• Desafio adicional: mostre o orçamento após cada operação e o aumento
-total em relação ao valor inicial.
+Um projeto tem orçamento inicial de R$ 2.500,00 e recebe R$ 750,00 para
+equipamentos e R$ 300,00 para materiais de consumo.
+• Solução 1: use orcamento = orcamento + valor.
+• Solução 2: use orcamento += valor.
+• Tarefa: apresente o orçamento após cada acréscimo e o aumento total.
 '''
-from time import sleep
 
-capital = 2500.00
-equipamentos = 750.00
-materiais = 300.00
-print(f"temos R$ {capital} de orçamento inicial")
-sleep(3)
-capital += equipamentos
-print(f"acrescentamos R$ {equipamentos} para os equipamentos, ficando com {capital}")
-sleep(4)
-print("Ah sim..")
-capital = capital + materiais
-sleep(1)
-print(f"E pra fechar com chave de latão, acrescentaremos R$ 300 para materiais de consumo, ficando com {capital}")
-sleep(3)
-print("A relação ao valor inicial é de: ", capital - 2500)
+# Solução 1: soma cada acréscimo usando a atribuição completa.
+orcamento = 2500.00
+print(f"Solução 1 - orçamento inicial: R$ {orcamento:.2f}")
+orcamento = orcamento + 750.00
+print(f"Após equipamentos: R$ {orcamento:.2f}")
+orcamento = orcamento + 300.00
+print(f"Após materiais: R$ {orcamento:.2f}")
+print(f"Aumento total: R$ {orcamento - 2500.00:.2f}")
 
+# Solução 2: += atualiza o orçamento somando cada acréscimo.
+orcamento_abreviado = 2500.00
+orcamento_abreviado += 750.00
+print(f"\nSolução 2 - após equipamentos: R$ {orcamento_abreviado:.2f}")
+orcamento_abreviado += 300.00
+print(f"Após materiais: R$ {orcamento_abreviado:.2f}")
+print(f"Aumento total: R$ {orcamento_abreviado - 2500.00:.2f}")

@@ -13,3 +13,16 @@ organização da expressão, por exemplo, usando parênteses: matriculado and
 cadastro_ativo e (matriculado) and (cadastro_ativo). O operador && não é válido
 em Python.
 '''
+
+# Solucao 1: o acesso exige matricula e cadastro ativo ao mesmo tempo.
+print("Solucao 1 | Solucao 2")
+for matriculado in (False, True):
+    for cadastro_ativo in (False, True):
+        libera = matriculado and cadastro_ativo
+
+        # Solucao 2: os parenteses deixam explicita a ordem sem alterar o and.
+        libera_equivalente = (matriculado) and (cadastro_ativo)
+        print(
+            f"Matriculado={matriculado}, cadastro ativo={cadastro_ativo}: "
+            f"{libera} | {libera_equivalente}"
+        )

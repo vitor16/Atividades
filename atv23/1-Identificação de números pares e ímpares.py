@@ -1,81 +1,25 @@
 '''
-Um sistema de controle de equipamentos utiliza números inteiros para identificar
-cada item cadastrado. Para organizar os equipamentos, é necessário identificar
-quais códigos são pares e quais são ímpares. O sistema deverá calcular o resto da
-divisão do código por 2 e apresentar uma mensagem correspondente.
-• Operador original: %
-• Equivalência conceitual: mod
-• Tarefa: leia um número inteiro, calcule o resto da divisão por 2 e informe se
-o código é par ou ímpar.
-• Desafio adicional: teste três números diferentes e compare os resultados.
+Um sistema precisa identificar se três códigos inteiros são pares ou ímpares.
+Um número é par quando o resto da divisão por 2 é zero.
+• Solução 1: use o operador % para calcular o resto.
+• Solução 2: use math.fmod para calcular o resto.
+• Tarefa: leia três números e informe a classificação em cada solução.
+• Desafio adicional: compare os resultados das duas formas.
 '''
 
-#como python não possui mod, utilizarei .fmod(resto para float)
-#para isso preciso importar math
 import math
-#crio dois vetores para armazenar cada tipo
-pAres = []
-iMpares = []
 
-#função para descobrir par ou impar utilizando %
-def pArimp():
-    global pAres
-    global iMpares
+# Lê três valores para testar as duas formas de calcular o resto.
+for indice in range(1, 4):
+    numero = int(input(f"Digite o {indice}º número inteiro: "))
 
-    for i in range(3):    
-        n1=int(input(f"Digite o {i+1}º numero para saber se é par ou ímpar utilizando o operador %: "))
-        if n1 % 2 == 0:
-            print(n1," É par")
-            pAres.append(n1)
-        else:
-            print(n1," É ímpar")
-            iMpares.append(n1)
-   
-    if not pAres:
-        print("nenhum número par")
-    elif not iMpares:
-        print("nenhum número ímpar")
-    else:
-        print("Números pares: ", pAres)
-        print("Números ímpares: ", iMpares)
+    # Solução 1: o operador % retorna zero para números pares.
+    resto_percentual = numero % 2
+    classificacao_percentual = "par" if resto_percentual == 0 else "ímpar"
 
-          
-#função para par ou impar utilizando math.fmod (a,b) a sendo o valor desejado e b sendo o divisor, e == 0  sendo o resto
-def pArimp2(n2):
+    # Solução 2: math.fmod calcula o resto da divisão como número real.
+    resto_fmod = math.fmod(numero, 2)
+    classificacao_fmod = "par" if resto_fmod == 0 else "ímpar"
 
-    
-    if n2 <= 3:
-        n=float(input(f"Digite o {n2} ºnumero para saber se é par ou ímpar utilizando o operador %: "))
-        if  math.fmod (n,2) == 0.0:
-            print(n," É par")
-            pAres.append(n)
-            pArimp2(n2 + 1)
-        else:
-            print(n," É ímpar")
-            iMpares.append(n)
-            pArimp2(n2 + 1)
-    else:
-        print("Números pares: ", pAres)
-        print("Números ímpares: ", iMpares)
-        
-#menu principal
-while True:
-    print()
-    print("========Menu========")
-    #espaçamento
-    print()
-    print("1- verificar se seus 3 números são pares ou ímpares usando o operador %: ")
-    print("2- verificar se seus 3 números são pares ou ímpares usando a função math: ")
-    #espaçamento diferente
-    print(f"\n0- sair")
-    
-    opcao = input(f"\ndigite a operação desejada: ")
-    if opcao == "1":
-        pArimp()
-    elif opcao == "2":
-        pArimp2(1)
-    elif opcao == "0":
-        print("Saindo...")
-        exit()
-    else:
-        print("Tente novamente, opção incorreta!!")
+    print(f"Solução 1 (%): {numero} é {classificacao_percentual}.")
+    print(f"Solução 2 (math.fmod): {numero} é {classificacao_fmod}.")
